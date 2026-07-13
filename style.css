@@ -174,7 +174,7 @@ main {
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
-  transform: scale(1.4);
+  transform: scale(1.15);
 }
 .hero h1 { font-size: 2rem; margin-bottom: 0.15em; }
 .hero .role { color: var(--muted); font-size: 1.02rem; margin-bottom: 0; }
