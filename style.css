@@ -1,0 +1,270 @@
+/* ===================================================================
+   Soheil Saghafi — personal academic site
+   Token system:
+   Color   — paper #F5F4EF, ink #1E2A22, accent (sage) #5B7052,
+             accent-deep #3C4E36, rule #DAD5C7, muted #6B6F63
+   Type    — display: 'Source Serif 4' (headings, name)
+             body:    'Inter' (paragraphs, nav, UI)
+             mono:    'IBM Plex Mono' (labels, eyebrows, dates)
+   Layout  — single column, max-width 720px, hairline rules,
+             persistent top nav with a left tick-mark on active page
+   =================================================================== */
+
+:root {
+  --paper: #F5F4EF;
+  --paper-raised: #FCFBF8;
+  --ink: #1E2A22;
+  --muted: #6B6F63;
+  --rule: #DAD5C7;
+  --accent: #5B7052;
+  --accent-deep: #3C4E36;
+  --max-w: 720px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+a {
+  color: var(--accent-deep);
+  text-decoration-color: var(--rule);
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--accent); }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.6em;
+}
+
+/* ---------- layout shell ---------- */
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.nav-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 22px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+.site-name {
+  font-family: 'Source Serif 4', serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+nav.site-nav {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  font-size: 0.92rem;
+}
+nav.site-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  position: relative;
+  padding-left: 12px;
+}
+nav.site-nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 2px;
+  background: var(--rule);
+}
+nav.site-nav a:hover { color: var(--ink); }
+nav.site-nav a.active {
+  color: var(--ink);
+  font-weight: 600;
+}
+nav.site-nav a.active::before {
+  background: var(--accent);
+  width: 8px;
+}
+
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 40px;
+}
+.footer-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--accent-deep); }
+
+/* ---------- home / hero ---------- */
+.hero {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 48px;
+}
+.avatar {
+  flex: none;
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Source Serif 4', serif;
+  font-size: 2rem;
+  color: var(--muted);
+}
+.hero h1 { font-size: 2rem; margin-bottom: 0.15em; }
+.hero .role { color: var(--muted); font-size: 1.02rem; margin-bottom: 0; }
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 8px;
+}
+.tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--accent-deep);
+  background: rgba(91, 112, 82, 0.08);
+  border: 1px solid rgba(91, 112, 82, 0.25);
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+section { margin-bottom: 44px; }
+section > h2 {
+  font-size: 1.3rem;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+/* ---------- entry list (publications / teaching / research) ---------- */
+.entry {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 18px;
+}
+.entry:last-child { border-bottom: none; }
+.entry-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.entry-title {
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.entry-meta {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 6px;
+}
+.entry-desc { margin: 0; font-size: 0.96rem; }
+.entry-links { margin-top: 8px; font-size: 0.88rem; display: flex; gap: 14px; }
+
+.placeholder-note {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--accent-deep);
+  background: rgba(91,112,82,0.07);
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  margin: 0 0 28px;
+}
+
+/* ---------- contact ---------- */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+.contact-list li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.contact-list .label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  width: 92px;
+  flex: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 560px) {
+  .hero { flex-direction: column; align-items: flex-start; }
+  .entry { grid-template-columns: 1fr; gap: 4px; }
+  .entry-date { padding-top: 0; }
+  nav.site-nav { gap: 14px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
